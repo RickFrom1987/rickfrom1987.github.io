@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+  <h1>is_user_click</h1>
+  <p>Open console to see output</p>
+  <p>
+    We use a combination of e.isTrusted and e.pointerType.
+  </p>
+  <ol>
+    <li>First, we check if isTrusted is supported and is false return false because we do not trust this click</li>
+    <li>Or, we check if pointerType is supported and is false</li>
+    <li>Finally, we get past those two cases in which case event is likely trusted</li>
+  </ol>
+  <button id="trustedButton">Click here - Trusted</button>
+  <button id="untrustedButton">Generate Untrusted Event - click on trusted button</button>
+  <h2>isTrusted</h2>
+  <div id="isTrusted"></div>
+  <h2>pointerType</h2>
+  <div id="pointerType"></div>
+  <h2>is_user_click</h2>
+  <div id="isUserClick"></div>
+  <script>
+    // button elems
+    var trustedButton = document.querySelector('#trustedButton');
+    var untrustedButton = document.querySelector('#untrustedButton');
+
+    // log elems
+    var pointerType = document.querySelector('#pointerType');
+    var isTrusted = document.querySelector('#isTrusted');
+    var isUserClick = document.querySelector('#isUserClick');
+
+    /*
+    * is_user_click
+    *
+    * 1) isTrusted is supported and is false return false
+    * 2) pointerType is supported and is false return false
+    * 3) return true
+    *  
+        var isTrusted = (e.isTrusted !== undefined && e.isTrusted);
+        var hasPointerType = (e.pointerType !== undefined && e.pointerType); 
+
+        if (!isTrusted) {
+          console.log("event is likely fake event");
+          return false
+        }
+
+        if (!hasPointerType) {
+          console.log("event is likely fake event");
+          return false
+        }
+        
+        console.log('event is likely trusted');
+        return true
+      }
+    */
+
+    // log to page
+    function log (e) {
+      pointerType.innerHTML = e.pointerType;
+      isTrusted.innerHTML = e.isTrusted;
+    }
+    
+    function is_user_click(e) {
+      log(e); // remove log when not needed
+      return (('isTrusted' in e && !e.isTrusted) || ('pointerType' in e && !e.pointerType)) ? false : true
+    }
+
+    function reportIsUserClick(e) {
+      var iuc = is_user_click(e);
+      alert('is_user_click ' + iuc);
+      isUserClick.innerHTML = iuc;
+    }
+
+    function spoofClick(e) {
+      trustedButton.click();
+    }
+
+    if (trustedButton.addEventListener) {
+      trustedButton.addEventListener('click', reportIsUserClick);
+      untrustedButton.addEventListener('click', spoofClick);
+    } else {
+      trustedButton.attachEvent('onclick', reportIsUserClick);
+      untrustedButton.attachEvent('onclick', spoofClick);
+    }
+
+
+  </script>
+</body>
+
+</html>
