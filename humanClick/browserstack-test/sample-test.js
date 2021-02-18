@@ -7,7 +7,9 @@ const capabilities = {
  'browser_version' : 'latest',
  'os' : 'Windows',
  'name': 'is_user_click', // test name
- 'build': 'BStack Build Number 1' // CI/CD job or build name
+ 'build': 'BStack Build Number 1', // CI/CD job or build name
+ 'browserstack.user' : '', // TODO: Move to env
+ 'browserstack.key' : '' // TODO: Move to env
 }
 async function runSampleTest () {
   let driver;
