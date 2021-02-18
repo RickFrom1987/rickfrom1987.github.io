@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const webdriver = require('selenium-webdriver');
 // Input capabilities
 const capabilities = {
@@ -8,8 +10,8 @@ const capabilities = {
  'os' : 'Windows',
  'name': 'is_user_click', // test name
  'build': 'BStack Build Number 1', // CI/CD job or build name
- 'browserstack.user' : '', // TODO: Move to env
- 'browserstack.key' : '' // TODO: Move to env
+ 'browserstack.user' : process.env.BROWSERSTACK_USER,
+ 'browserstack.key' : process.env.BROWSERSTACK_KEY,
 }
 async function runSampleTest () {
   let driver;
