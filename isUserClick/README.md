@@ -29,4 +29,4 @@ BROWSERSTACK_KEY=yourkey
 
 ```yarn```
 
-```node windows-10-chrome.js```
+```node windows-7-IE-8.js```
