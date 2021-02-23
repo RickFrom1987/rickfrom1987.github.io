@@ -1,18 +1,20 @@
 require('dotenv').config();
+
 const webdriver = require('selenium-webdriver');
 
-// Input capabilities
-const capabilities = {
- 'os_version' : '10',
- 'resolution' : '1920x1080',
- 'browserName' : 'Chrome',
- 'browser_version' : 'latest',
- 'os' : 'Windows',
- 'name': 'is_user_click', // test name
- 'build': 'BStack Build Number 1', // CI/CD job or build name
- 'browserstack.user' : process.env.BROWSERSTACK_USER,
- 'browserstack.key' : process.env.BROWSERSTACK_KEY,
-};
+let capabilities = {
+  "os" : "Windows",
+  "os_version" : "7",
+  "browserName" : "IE",
+  "browser_version" : "8.0",
+  "browserstack.local" : "false",
+  "browserstack.selenium_version" : "3.5.2"
+}
+
+Object.assign(capabilities, {
+  'browserstack.user' : process.env.BROWSERSTACK_USER,
+  'browserstack.key' : process.env.BROWSERSTACK_KEY
+});
 
 async function run() {
   let driver;

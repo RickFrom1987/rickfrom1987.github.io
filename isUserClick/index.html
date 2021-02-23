@@ -74,7 +74,7 @@
 
     function reportIsUserClick(e) {
       var iuc = is_user_click(e);
-      // This is userful for IE testing
+      // This is userful for IE testing, but will break browserstack testing
       // alert('is_user_click ' + iuc);
       isUserClick.innerHTML = iuc;
     }

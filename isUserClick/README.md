@@ -13,6 +13,7 @@ Idea is to:
 3. Check that the output of our function is as we expect.
 
 We can automate and create a waterfall of browser tests in different OS/Browsers in the future.
+[https://www.browserstack.com/automate/capabilities](https://www.browserstack.com/automate/capabilities)
 
 ### How to run
 
