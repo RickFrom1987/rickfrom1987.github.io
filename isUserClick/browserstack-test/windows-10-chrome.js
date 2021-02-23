@@ -1,6 +1,6 @@
 require('dotenv').config();
-
 const webdriver = require('selenium-webdriver');
+
 // Input capabilities
 const capabilities = {
  'os_version' : '10',
@@ -12,14 +12,15 @@ const capabilities = {
  'build': 'BStack Build Number 1', // CI/CD job or build name
  'browserstack.user' : process.env.BROWSERSTACK_USER,
  'browserstack.key' : process.env.BROWSERSTACK_KEY,
-}
-async function runSampleTest () {
+};
+
+async function run() {
   let driver;
   try {
     driver = new webdriver.Builder().
       usingServer('http://hub-cloud.browserstack.com/wd/hub').
       withCapabilities(capabilities).build();
-    await driver.get('https://rickfrom1987.github.io/humanClick/index.html');
+    await driver.get('https://rickfrom1987.github.io/isUserClick/index.html');
     await (await driver.findElement(webdriver.By.id('trustedButton'))).click();
     const isUserClickValue = await (await driver.findElement(webdriver.By.id('isUserClick'))).getText();
     console.log('isUserClickValue', isUserClickValue);
@@ -37,4 +38,5 @@ async function runSampleTest () {
     }
   }
 }
-runSampleTest(); 
+
+run(); 
