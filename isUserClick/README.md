@@ -22,11 +22,12 @@ Install NVM in your favorite way.
 Install node LTS in your favorite way.
 
 Create .env file with BrowserStack credentials:
+
 ```
 BROWSERSTACK_USER=yourusername
 BROWSERSTACK_KEY=yourkey
 ```
 
-```yarn```
+`yarn`
 
-```node windows-7-IE-8.js```
+`node windows-7-IE-8.js`
